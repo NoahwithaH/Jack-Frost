@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jack Frost — Un conte d'hiver à l'encre</title>
+<meta name="description" content="Jack Frost, un conte d'hiver illustré à l'encre noire, dans l'esprit d'Edward Gorey. Découvrez les premières pages avant de commander votre exemplaire.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================= -->
+<!-- ÉCRAN DE CHARGEMENT — le givre se dessine seul -->
+<!-- ============================================= -->
+<div id="loader" aria-hidden="true">
+  <svg class="loader-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g class="frost-branch">
+      <path pathLength="1" d="M100 190 L100 40" />
+      <path pathLength="1" d="M100 150 L60 110" />
+      <path pathLength="1" d="M100 150 L140 110" />
+      <path pathLength="1" d="M100 110 L70 80" />
+      <path pathLength="1" d="M100 110 L130 80" />
+      <path pathLength="1" d="M100 75 L80 50" />
+      <path pathLength="1" d="M100 75 L120 50" />
+      <path pathLength="1" d="M60 110 L45 95" />
+      <path pathLength="1" d="M60 110 L48 122" />
+      <path pathLength="1" d="M140 110 L155 95" />
+      <path pathLength="1" d="M140 110 L152 122" />
+    </g>
+  </svg>
+  <p class="loader-text">le givre écrit son conte&hellip;</p>
+</div>
+
+<!-- ============================================= -->
+<!-- REPÈRE DE LECTURE — la stalactite de progression -->
+<!-- ============================================= -->
+<nav class="frost-rail" aria-label="Progression du conte">
+  <div class="rail-track">
+    <div class="rail-fill" id="railFill"></div>
+  </div>
+  <ul class="rail-dots">
+    <li><button data-target="hero" class="dot active" aria-label="Aller au prologue"><span>Prologue</span></button></li>
+    <li><button data-target="ch1" class="dot" aria-label="Aller au chapitre 1"><span>I. L'enfant sans ombre</span></button></li>
+    <li><button data-target="ch2" class="dot" aria-label="Aller au chapitre 2"><span>II. La fenêtre de Suzon</span></button></li>
+    <li><button data-target="ch3" class="dot" aria-label="Aller au chapitre 3"><span>III. La nuit où il resta</span></button></li>
+    <li><button data-target="cta" class="dot" aria-label="Aller à la commande du livre"><span>Le livre</span></button></li>
+  </ul>
+</nav>
+
+<div class="chapter-flag" id="chapterFlag">Prologue</div>
+
+<!-- neige ambiante -->
+<div class="snowfall" aria-hidden="true" id="snowfall"></div>
+
+<main>
+
+  <!-- ============================================= -->
+  <!-- PROLOGUE / HERO -->
+  <!-- ============================================= -->
+  <section class="section hero" id="hero">
+    <div class="hero-illustration reveal">
+      <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" class="ink-svg">
+        <!-- lune -->
+        <circle pathLength="1" cx="620" cy="130" r="80" class="line-thin" />
+        <path pathLength="1" d="M580 70 a 80 80 0 0 0 0 120" class="line-thin shadow-line" />
+        <circle pathLength="1" cx="595" cy="100" r="6" class="line-thin" />
+        <circle pathLength="1" cx="650" cy="150" r="10" class="line-thin" />
+        <circle pathLength="1" cx="615" cy="170" r="4" class="line-thin" />
+
+        <!-- fenêtre givrée, cadre -->
+        <rect pathLength="1" x="90" y="90" width="320" height="420" class="line-thick" />
+        <line pathLength="1" x1="250" y1="90" x2="250" y2="510" class="line-thin" />
+        <line pathLength="1" x1="90" y1="300" x2="410" y2="300" class="line-thin" />
+
+        <!-- fougères de givre -->
+        <g class="frost-fern">
+          <path pathLength="1" d="M110 500 C 140 430 130 360 170 300" class="line-thin" />
+          <path pathLength="1" d="M140 460 L 115 440" class="line-thin"/>
+          <path pathLength="1" d="M148 430 L 120 415" class="line-thin"/>
+          <path pathLength="1" d="M158 395 L 128 385" class="line-thin"/>
+          <path pathLength="1" d="M167 355 L 190 340" class="line-thin"/>
+          <path pathLength="1" d="M175 325 L 200 315" class="line-thin"/>
+          <path pathLength="1" d="M390 500 C 360 430 370 360 330 300" class="line-thin" />
+          <path pathLength="1" d="M360 460 L 385 440" class="line-thin"/>
+          <path pathLength="1" d="M352 430 L 380 415" class="line-thin"/>
+        </g>
+
+        <!-- branche nue devant la fenêtre -->
+        <path pathLength="1" d="M0 560 C 120 520 160 470 230 380 C 260 340 300 320 380 260" class="line-thick" />
+        <path pathLength="1" d="M180 430 L 140 400" class="line-thin" />
+        <path pathLength="1" d="M180 430 L 210 395" class="line-thin" />
+        <path pathLength="1" d="M280 340 L 250 305" class="line-thin" />
+        <path pathLength="1" d="M280 340 L 320 320" class="line-thin" />
+
+        <!-- silhouette de Jack Frost, minuscule, sur le rebord -->
+        <g class="jack-silhouette">
+          <path pathLength="1" d="M430 470 C 425 440 440 420 450 400 C 460 420 478 440 470 470 Z" class="line-fill" />
+          <path pathLength="1" d="M450 400 L 450 380" class="line-thin" />
+          <circle pathLength="1" cx="450" cy="392" r="10" class="line-fill" />
+        </g>
+      </svg>
+    </div>
+
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Un conte d'hiver, à l'encre</p>
+      <h1 class="hero-title reveal">Jack&nbsp;Frost</h1>
+      <p class="hero-sub reveal">Certains soirs, quand le froid mord un peu plus fort qu'à l'ordinaire,<br> c'est qu'il est passé par là.</p>
+      <button class="scroll-cue" id="scrollCue" aria-label="Défiler pour commencer la lecture">
+        <span>faites glisser la nuit</span>
+        <svg viewBox="0 0 24 40" class="cue-arrow"><path pathLength="1" d="M12 0 V32 M4 24 L12 32 L20 24" /></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- divider ornemental -->
+  <div class="ornament reveal" aria-hidden="true">
+    <svg viewBox="0 0 400 40"><path pathLength="1" d="M0 20 H160 M240 20 H400" class="line-thin"/><circle pathLength="1" cx="200" cy="20" r="5" class="line-thin"/><path pathLength="1" d="M190 20 C195 10 205 10 210 20 C205 30 195 30 190 20 Z" class="line-thin"/></svg>
+  </div>
+
+  <!-- ============================================= -->
+  <!-- CHAPITRE I -->
+  <!-- ============================================= -->
+  <section class="section chapter" id="ch1" data-title="I. L'enfant sans ombre">
+    <div class="chapter-illustration reveal">
+      <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" class="ink-svg">
+        <!-- toits du village -->
+        <path pathLength="1" d="M0 480 L 60 420 L 120 480 L 180 400 L 250 480 L 310 430 L 380 480 L 450 410 L 520 480 L 590 440 L 660 480 L 700 460" class="line-thick"/>
+        <line pathLength="1" x1="0" y1="480" x2="700" y2="480" class="line-thin"/>
+        <!-- cheminées -->
+        <rect pathLength="1" x="150" y="360" width="20" height="45" class="line-thin"/>
+        <rect pathLength="1" x="480" y="350" width="18" height="65" class="line-thin"/>
+        <path pathLength="1" d="M160 355 q 6 -14 -2 -26" class="line-thin smoke"/>
+        <!-- lune haute -->
+        <circle pathLength="1" cx="580" cy="120" r="55" class="line-thin"/>
+        <path pathLength="1" d="M550 75 a 55 55 0 0 0 0 90" class="line-thin shadow-line"/>
+
+        <!-- Jack Frost, silhouette élancée sur la crête d'un toit -->
+        <g class="jack-figure">
+          <!-- cape avec hachures -->
+          <path pathLength="1" d="M340 470 C 320 430 322 380 340 340 C 348 330 362 330 370 340 C 388 380 390 430 370 470 Z" class="line-fill"/>
+          <path pathLength="1" d="M330 460 C 335 420 338 390 345 355" class="hatch"/>
+          <path pathLength="1" d="M345 465 C 348 425 350 390 355 358" class="hatch"/>
+          <path pathLength="1" d="M360 465 C 360 425 358 390 358 358" class="hatch"/>
+          <!-- tête / capuchon -->
+          <path pathLength="1" d="M340 340 C 340 315 372 315 372 340 C 372 352 356 360 340 340 Z" class="line-fill"/>
+          <!-- bâton de givre -->
+          <line pathLength="1" x1="390" y1="470" x2="410" y2="330" class="line-thin"/>
+          <path pathLength="1" d="M410 330 L 398 312 M410 330 L 422 312 M410 330 L 410 308" class="line-thin"/>
+        </g>
+
+        <!-- traces de givre semées derrière lui -->
+        <g class="frost-trail">
+          <path pathLength="1" d="M300 478 l -6 -10 M300 478 l 6 -10 M300 478 l 0 -12" class="line-thin"/>
+          <path pathLength="1" d="M250 478 l -6 -10 M250 478 l 6 -10 M250 478 l 0 -12" class="line-thin"/>
+          <path pathLength="1" d="M200 478 l -6 -10 M200 478 l 6 -10 M200 478 l 0 -12" class="line-thin"/>
+        </g>
+      </svg>
+    </div>
+    <div class="chapter-copy">
+      <span class="chapter-num reveal">I.</span>
+      <h2 class="chapter-title reveal">L'enfant sans ombre</h2>
+      <p class="chapter-text reveal">On ne sait pas d'où vient Jack Frost, ni depuis quand il marche sur les toits. Les vieux du village disent qu'il est le dernier enfant de l'Hiver, oublié par sa mère un soir de premières neiges, et qu'il a grandi seul, entre deux saisons, sans jamais projeter d'ombre.</p>
+      <p class="chapter-text reveal">Il ne mange pas, il ne dort pas. Il marche, pieds nus sur les ardoises gelées, et partout où il pose le talon, une fine fougère blanche pousse sur la pierre — puis se fane avant l'aube, comme pour ne rien laisser derrière lui.</p>
+      <p class="chapter-text reveal chapter-tease">Sauf, une fois, sur une vitre qu'il n'aurait jamais dû regarder deux fois&hellip;</p>
+    </div>
+  </section>
+
+  <div class="ornament reveal" aria-hidden="true">
+    <svg viewBox="0 0 400 40"><path pathLength="1" d="M0 20 H160 M240 20 H400" class="line-thin"/><circle pathLength="1" cx="200" cy="20" r="5" class="line-thin"/><path pathLength="1" d="M190 20 C195 10 205 10 210 20 C205 30 195 30 190 20 Z" class="line-thin"/></svg>
+  </div>
+
+  <!-- ============================================= -->
+  <!-- CHAPITRE II -->
+  <!-- ============================================= -->
+  <section class="section chapter reverse" id="ch2" data-title="II. La fenêtre de Suzon">
+    <div class="chapter-illustration reveal">
+      <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" class="ink-svg">
+        <!-- fenêtre en arc -->
+        <path pathLength="1" d="M180 600 V 260 A 170 170 0 0 1 520 260 V 600 Z" class="line-thick"/>
+        <line pathLength="1" x1="350" y1="90" x2="350" y2="600" class="line-thin"/>
+        <line pathLength="1" x1="180" y1="400" x2="520" y2="400" class="line-thin"/>
+
+        <!-- fougères de givre plus denses -->
+        <g class="frost-fern-dense">
+          <path pathLength="1" d="M200 590 C 230 520 220 460 260 400 C 280 370 270 330 300 280" class="line-thin"/>
+          <path pathLength="1" d="M230 540 L 205 520" class="line-thin"/>
+          <path pathLength="1" d="M240 505 L 212 492" class="line-thin"/>
+          <path pathLength="1" d="M250 465 L 220 452" class="line-thin"/>
+          <path pathLength="1" d="M262 425 L 288 405" class="line-thin"/>
+          <path pathLength="1" d="M272 385 L 298 368" class="line-thin"/>
+          <path pathLength="1" d="M285 340 L 310 322" class="line-thin"/>
+          <path pathLength="1" d="M500 590 C 470 520 480 460 440 400 C 420 370 430 330 400 280" class="line-thin"/>
+          <path pathLength="1" d="M470 540 L 495 520" class="line-thin"/>
+          <path pathLength="1" d="M460 505 L 488 492" class="line-thin"/>
+          <path pathLength="1" d="M450 465 L 480 452" class="line-thin"/>
+        </g>
+
+        <!-- rideau et bougie -->
+        <path pathLength="1" d="M180 260 C 160 340 165 460 150 600" class="line-thin"/>
+        <path pathLength="1" d="M160 300 C 150 380 155 480 145 590" class="line-thin"/>
+        <rect pathLength="1" x="470" y="560" width="16" height="40" class="line-fill-light"/>
+        <path pathLength="1" d="M478 560 q 3 -18 -3 -28" class="line-thin"/>
+
+        <!-- silhouette de Suzon derrière le rideau -->
+        <g class="suzon-figure">
+          <path pathLength="1" d="M210 600 C 205 550 215 520 225 500 C 235 520 245 550 240 600 Z" class="line-fill-light"/>
+          <circle pathLength="1" cx="225" cy="485" r="16" class="line-fill-light"/>
+          <path pathLength="1" d="M212 476 q 6 -16 26 0" class="line-thin"/>
+        </g>
+      </svg>
+    </div>
+    <div class="chapter-copy">
+      <span class="chapter-num reveal">II.</span>
+      <h2 class="chapter-title reveal">La fenêtre de Suzon</h2>
+      <p class="chapter-text reveal">Chaque matin, Suzon trouvait sur sa vitre des dessins qu'aucune main n'aurait su tracer : des fougères de glace, des toiles d'araignée blanches, des forêts entières grandies en une nuit sur trois centimètres de verre froid.</p>
+      <p class="chapter-text reveal">Sa grand-mère haussait les épaules — « c'est le givre, rien de plus » — mais Suzon remarqua bientôt un détail que personne d'autre n'avait vu : chaque dessin, si l'on regardait bien, ressemblait un peu plus, chaque jour, à un visage.</p>
+      <p class="chapter-text reveal chapter-tease">Alors, un soir, elle décida de ne pas s'endormir.</p>
+    </div>
+  </section>
+
+  <div class="ornament reveal" aria-hidden="true">
+    <svg viewBox="0 0 400 40"><path pathLength="1" d="M0 20 H160 M240 20 H400" class="line-thin"/><circle pathLength="1" cx="200" cy="20" r="5" class="line-thin"/><path pathLength="1" d="M190 20 C195 10 205 10 210 20 C205 30 195 30 190 20 Z" class="line-thin"/></svg>
+  </div>
+
+  <!-- ============================================= -->
+  <!-- CHAPITRE III — cliffhanger -->
+  <!-- ============================================= -->
+  <section class="section chapter cliff" id="ch3" data-title="III. La nuit où il resta">
+    <div class="chapter-illustration reveal">
+      <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" class="ink-svg">
+        <rect pathLength="1" x="140" y="110" width="420" height="480" class="line-thick"/>
+        <line pathLength="1" x1="350" y1="110" x2="350" y2="590" class="line-thin"/>
+
+        <!-- fenêtre entrouverte -->
+        <path pathLength="1" d="M350 110 L 500 140 L 500 570 L 350 590" class="line-thin open-pane"/>
+
+        <!-- rideau soulevé par le vent -->
+        <path pathLength="1" d="M500 150 C 540 220 460 300 520 380 C 550 430 500 500 540 560" class="line-thin curtain-flow"/>
+
+        <!-- neige entrant -->
+        <g class="snow-in">
+          <circle pathLength="1" cx="440" cy="220" r="3" class="line-thin"/>
+          <circle pathLength="1" cx="470" cy="280" r="2.5" class="line-thin"/>
+          <circle pathLength="1" cx="420" cy="330" r="3" class="line-thin"/>
+          <circle pathLength="1" cx="460" cy="400" r="2" class="line-thin"/>
+          <circle pathLength="1" cx="430" cy="460" r="3" class="line-thin"/>
+        </g>
+
+        <!-- corbeau sur le rebord -->
+        <g class="raven">
+          <path pathLength="1" d="M170 560 C 160 540 175 525 195 530 C 205 515 225 515 230 528 C 245 525 250 545 235 555 C 240 570 215 575 205 565 C 190 575 175 575 170 560 Z" class="line-fill"/>
+          <path pathLength="1" d="M230 528 L 250 522" class="line-thin"/>
+        </g>
+
+        <!-- main de givre passant par l'entrebâillement -->
+        <g class="frost-hand">
+          <path pathLength="1" d="M500 380 C 520 375 535 385 545 400 C 548 405 545 412 540 410 C 542 418 536 424 530 420 C 530 428 522 430 518 424 C 512 430 505 424 507 416 C 495 412 494 396 500 380 Z" class="line-fill"/>
+        </g>
+      </svg>
+      <div class="cliff-fade" aria-hidden="true"></div>
+    </div>
+    <div class="chapter-copy">
+      <span class="chapter-num reveal">III.</span>
+      <h2 class="chapter-title reveal">La nuit où il resta</h2>
+      <p class="chapter-text reveal">Suzon attendit, enroulée dans trois couvertures, jusqu'à ce que l'horloge du salon sonne minuit. C'est à cet instant précis que la fenêtre, qu'elle avait pourtant fermée, s'entrouvrit d'elle-même — sans un grincement, sans un souffle de vent.</p>
+      <p class="chapter-text reveal">Une odeur de neige fraîche envahit la chambre. Sur le rebord, une forme pâle se tenait immobile, plus près qu'aucun givre n'avait jamais osé l'être. Suzon retint son souffle. Et lorsqu'elle tendit la main vers la vitre&hellip;</p>
+      <p class="chapter-text reveal chapter-tease chapter-tease-final">&hellip;l'histoire s'arrête ici, sur le rebord glacé d'une fenêtre entrouverte.</p>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- CTA — commander le livre -->
+  <!-- ============================================= -->
+  <section class="section cta" id="cta">
+    <div class="cta-inner reveal">
+      <p class="eyebrow">La suite vous attend</p>
+      <h2 class="cta-title">Ce que Suzon a vu cette nuit-là ne se raconte pas à l'écran.</h2>
+      <p class="cta-sub">Il se lit à la lueur d'une bougie, les pieds au chaud, avec ce livre entre les mains.</p>
+
+      <div class="book-showcase">
+        <div class="book-cover">
+          <svg viewBox="0 0 300 420" class="ink-svg book-svg">
+            <rect pathLength="1" x="8" y="8" width="284" height="404" class="line-thick"/>
+            <rect pathLength="1" x="20" y="20" width="260" height="380" class="line-thin"/>
+            <circle pathLength="1" cx="150" cy="120" r="45" class="line-thin"/>
+            <path pathLength="1" d="M120 90 a 45 45 0 0 0 0 60" class="line-thin shadow-line"/>
+            <path pathLength="1" d="M150 200 C 90 260 90 320 150 380 C 210 320 210 260 150 200 Z" class="line-thin"/>
+            <text x="150" y="240" text-anchor="middle" class="book-title-svg">JACK</text>
+            <text x="150" y="270" text-anchor="middle" class="book-title-svg">FROST</text>
+          </svg>
+        </div>
+
+        <div class="book-details">
+          <ul class="book-meta">
+            <li><span>Conte illustré</span> — encre noire, à la manière d'Edward Gorey</li>
+            <li><span>Format</span> — relié, jaquette toilée, 96 pages</li>
+            <li><span>Lecture</span> — dès 6 ans, à voix haute ou en silence</li>
+            <li><span>Prix</span> — 16,90&nbsp;€</li>
+          </ul>
+          <a href="#" class="order-button">
+            <span class="seal">❄</span>
+            Commander mon exemplaire
+          </a>
+          <p class="order-note">Expédié dans un papier de soie, comme il se doit pour un conte d'hiver.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>Jack Frost — un conte d'hiver. Illustrations à l'encre, dans l'esprit d'Edward Gorey.</p>
+    <p class="footer-fine">Cette page est une présentation immersive du livre papier — l'histoire complète se lit dans l'ouvrage relié.</p>
+  </footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
