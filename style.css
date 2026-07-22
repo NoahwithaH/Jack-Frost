@@ -199,12 +199,8 @@ body.is-loading{ overflow:hidden; height:100vh; }
 }
 
 .rail-dots{
-  list-style:none;
-  margin:0; padding:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  height:min(46vh, 380px);
+  /* Masque les cercles pour n'afficher que la barre verticale */
+  display:none !important;
 }
 .dot{
   position:relative;
